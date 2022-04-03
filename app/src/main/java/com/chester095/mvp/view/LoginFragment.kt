@@ -32,10 +32,10 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val usernameEditText = binding.username
-        val passwordEditText = binding.password
-        val loginButton = binding.login
-        val loadingProgressBar = binding.loading
+        val usernameEditText = binding.etLogin
+        val passwordEditText = binding.etPassword
+        val loginButton = binding.btLogin
+        val signUpButton = binding.btSignup
 
 
         val afterTextChangedListener = object : TextWatcher {
