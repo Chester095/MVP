@@ -14,5 +14,10 @@
     <string name="tv_no_account">Нет аккаунта?</string>
     <string name="bt_registration">Регистрация</string>
     <string name="tv_authorization">Авторизация</string>
+    <string name="tv_registration">Регистрация</string>
     <string name="bt_enter">Вход</string>
+    <string name="et_enter_login">Введите логин</string>
+    <string name="et_enter_password">Введите пароль</string>
+    <string name="et_enter_password_confirm">Подтвердите пароль</string>
+    <string name="tv_have_account">Есть аккаунт</string>
 </resources>

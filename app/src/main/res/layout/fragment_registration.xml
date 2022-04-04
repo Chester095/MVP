@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/tv_heading_margin_top"
-        android:text="@string/tv_authorization"
+        android:text="@string/tv_registration"
         android:textSize="@dimen/tv_heading_text_size"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:autofillHints="username"
                     android:gravity="start"
-                    android:hint="@string/et_login"
+                    android:hint="@string/et_enter_login"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -65,22 +65,42 @@
                     android:layout_height="wrap_content"
                     android:autofillHints="password"
                     android:gravity="start"
-                    android:hint="@string/et_password"
+                    android:hint="@string/et_enter_password"
+                    android:inputType="textPassword"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_password_confirm"
+                android:layout_width="@dimen/til_lp_layout_width"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/til_lp_margin_top"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_password"
+                app:layout_constraintWidth_percent="0.7">
+
+                <EditText
+                    android:id="@+id/et_password_confirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="password"
+                    android:gravity="start"
+                    android:hint="@string/et_enter_password_confirm"
                     android:inputType="textPassword"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/bt_login"
+                android:id="@+id/bt_registration"
                 style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="@dimen/bt_login_layout_width"
                 android:layout_height="@dimen/bt_login_layout_height"
                 android:layout_marginTop="@dimen/bt_login_layout_margin_top"
                 android:elevation="@dimen/bt_login_elevation"
-                android:text="@string/bt_enter"
+                android:text="@string/bt_registration"
                 android:textAllCaps="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layout_password"
+                app:layout_constraintTop_toBottomOf="@+id/layout_password_confirm"
                 app:layout_constraintWidth_percent="0.7" />
 
             <LinearLayout
@@ -92,23 +112,23 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bt_login"
+                app:layout_constraintTop_toBottomOf="@+id/bt_registration"
                 app:layout_constraintWidth_percent="1.0">
 
                 <TextView
                     android:id="@+id/tv_already_have_account"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tv_no_account"
+                    android:text="@string/tv_have_account"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/bt_signup"
+                    android:id="@+id/bt_enter"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/bt_registration"
+                    android:text="@string/bt_enter"
                     android:textAllCaps="false"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
