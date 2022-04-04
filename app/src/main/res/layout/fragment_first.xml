@@ -9,6 +9,6 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srcCompat="@drawable/minon" />
+        app:srcCompat="@drawable/minion" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

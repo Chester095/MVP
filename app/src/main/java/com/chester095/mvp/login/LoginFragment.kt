@@ -3,7 +3,6 @@ package com.chester095.mvp.login
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,6 @@ import androidx.fragment.app.Fragment
 import coil.load
 import com.chester095.mvp.R
 import com.chester095.mvp.databinding.FragmentLoginBinding
-import kotlin.concurrent.thread
 
 class LoginFragment : Fragment() , LoginContract.View {
     companion object {
@@ -65,7 +63,6 @@ class LoginFragment : Fragment() , LoginContract.View {
             .replace(R.id.container, fragment).addToBackStack("").commit()
     }
 
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -96,6 +93,7 @@ class LoginFragment : Fragment() , LoginContract.View {
     }
 
     override fun hideProgress() {
+        binding.layoutNotRememberPassword.isVisible = true
         binding.ivFragmentLogin.isVisible = false
     }
 

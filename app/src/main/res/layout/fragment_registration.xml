@@ -104,7 +104,7 @@
                 app:layout_constraintWidth_percent="0.7" />
 
             <LinearLayout
-                android:id="@+id/layout_dont_have_account"
+                android:id="@+id/layout_not_have_account"
                 android:layout_width="@dimen/laha_layout_width"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/laha_layout_margin_top"
@@ -116,7 +116,7 @@
                 app:layout_constraintWidth_percent="1.0">
 
                 <TextView
-                    android:id="@+id/tv_already_have_account"
+                    android:id="@+id/tv_not_have_account"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/tv_have_account"

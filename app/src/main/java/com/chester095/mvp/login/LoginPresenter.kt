@@ -18,7 +18,6 @@ class LoginPresenter : LoginContract.Presenter {
             view.setSuccess()
         } else {
             view.setError(errorText)
-            view.hideProgress()
         }
     }
 
@@ -52,6 +51,7 @@ class LoginPresenter : LoginContract.Presenter {
                 }
             }
         }.start()
+        view?.hideProgress()
     }
 
     private fun checkCredentials(login: String, password: String): Int {

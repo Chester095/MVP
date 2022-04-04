@@ -57,12 +57,7 @@ class RegistrationFragment : Fragment() , LoginContract.Registration {
     }
 
     override fun savingCredentials() {
-        TODO("Not yet implemented")
-        /*        val usernameEditText = binding.etLogin
-            val passwordEditText = binding.etPassword
-            val passwordConfirmEditText = binding.etPasswordConfirm
-            val registrationButton = binding.btRegistration
-            val enterButton = binding.btEnter*/
+        TODO("Наверное тут надо использовать RegistrationPresenter. Жду команды проверяющего.")
     }
 
 
