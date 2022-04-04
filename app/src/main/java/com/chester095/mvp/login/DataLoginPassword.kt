@@ -1,7 +1,8 @@
 package com.chester095.mvp.login
 
-class DataLoginPassword {
-    private val dataLoginPassword: MutableMap<String, String> = mutableMapOf()
+class DataLoginPassword{
+
+    val dataLoginPassword: MutableMap<String, String> = mutableMapOf()
 
 
     fun newLoginPassword(login: String, password: String) {

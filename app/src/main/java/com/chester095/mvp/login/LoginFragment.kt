@@ -1,14 +1,11 @@
 package com.chester095.mvp.login
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.chester095.mvp.R
@@ -23,7 +20,7 @@ class LoginFragment : Fragment() , LoginContract.View {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -48,10 +45,8 @@ class LoginFragment : Fragment() , LoginContract.View {
     }
 
     private fun restorePresenter(): LoginPresenter {
-        val presenter = lastCustomNonConfigurationInstance as? LoginPresenter
-        return presenter ?: LoginPresenter()
+        return LoginPresenter()
     }
-
 
     private fun navigateTo(fragment: Fragment) {
         requireActivity().supportFragmentManager.beginTransaction()
@@ -71,7 +66,7 @@ class LoginFragment : Fragment() , LoginContract.View {
     }
 
     override fun setSuccess() {
-        TODO("Not yet implemented")
+        navigateTo(FirstFragment())
     }
 
     override fun setError(error: String) {
@@ -82,7 +77,6 @@ class LoginFragment : Fragment() , LoginContract.View {
         binding.btLogin.isVisible = false
         binding.etLogin.isVisible = false
         binding.etPassword.isVisible = false
-        View.hideSoftInput()
     }
 
     override fun hideProgress() {

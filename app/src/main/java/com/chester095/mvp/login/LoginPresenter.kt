@@ -5,7 +5,7 @@ import android.os.Looper
 
 class LoginPresenter : LoginContract.Presenter {
 
-    private lateinit var dataLoginPassword: DataLoginPassword
+    private var dataLoginPassword: DataLoginPassword? = DataLoginPassword()
     private var view: LoginContract.View? = null
     private val uiHandler = Handler(Looper.getMainLooper())
     private var isSuccess: Boolean = false
@@ -22,16 +22,16 @@ class LoginPresenter : LoginContract.Presenter {
     }
 
     private fun testInitialDB() {
-        dataLoginPassword.newLoginPassword("Mark", "dfgsdfgs")
-        dataLoginPassword.newLoginPassword("Jone", "123")
-        dataLoginPassword.newLoginPassword("Kingsmarauli", "qwe")
+        dataLoginPassword?.newLoginPassword("Mark", "dfgsdfgs")
+        dataLoginPassword?.newLoginPassword("Jone", "123")
+        dataLoginPassword?.newLoginPassword("Kingsmarauli", "qwe")
+
     }
 
     override fun onLogin(login: String, password: String) {
         view?.showProgress()
         Thread {
             uiHandler.post {
-                view?.hideProgress()
                 when {
                     checkCredentials(login, password) == 1 -> {
                         view?.setSuccess()
@@ -54,7 +54,7 @@ class LoginPresenter : LoginContract.Presenter {
     }
 
     private fun checkCredentials(login: String, password: String): Int {
-        return dataLoginPassword.checkLoginPassword(login, password)
+        return dataLoginPassword!!.checkLoginPassword(login, password)
     }
 
 }
