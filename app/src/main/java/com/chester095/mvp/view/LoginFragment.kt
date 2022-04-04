@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.chester095.mvp.R
 import com.chester095.mvp.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
@@ -15,7 +16,6 @@ class LoginFragment : Fragment() {
     }
 
     private var _binding: FragmentLoginBinding? = null
-
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -23,10 +23,8 @@ class LoginFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,6 +35,7 @@ class LoginFragment : Fragment() {
         val loginButton = binding.btLogin
         val signUpButton = binding.btSignup
 
+        signUpButton.setOnClickListener { navigateTo(RegistrationFragment()) }
 
         val afterTextChangedListener = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
@@ -57,6 +56,17 @@ class LoginFragment : Fragment() {
         usernameEditText.addTextChangedListener(afterTextChangedListener)
         passwordEditText.addTextChangedListener(afterTextChangedListener)
 
+    }
+
+    private fun navigateTo(fragment: Fragment) {
+        requireActivity().supportFragmentManager.beginTransaction()
+            .setCustomAnimations(
+                R.anim.slide_in,
+                R.anim.fade_out,
+                R.anim.fade_in,
+                R.anim.slide_out
+            )
+            .replace(R.id.container, fragment).addToBackStack("").commit()
     }
 
 
