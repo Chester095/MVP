@@ -14,11 +14,6 @@ class LoginPresenter : LoginContract.Presenter {
     override fun onAttach(view: LoginContract.View) {
         testInitialDB()
         this.view = view
-        if (isSuccess) {
-            view.setSuccess()
-        } else {
-            view.setError(errorText)
-        }
     }
 
     private fun testInitialDB() {
