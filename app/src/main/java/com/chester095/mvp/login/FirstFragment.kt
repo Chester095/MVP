@@ -1,4 +1,4 @@
-package com.chester095.mvp.view
+package com.chester095.mvp.login
 
 import android.os.Bundle
 import android.view.LayoutInflater

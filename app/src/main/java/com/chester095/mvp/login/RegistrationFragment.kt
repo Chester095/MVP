@@ -1,4 +1,4 @@
-package com.chester095.mvp.view
+package com.chester095.mvp.login
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import com.chester095.mvp.R
 import com.chester095.mvp.databinding.FragmentRegistrationBinding
 
-class RegistrationFragment : Fragment() {
+class RegistrationFragment : Fragment() , LoginContract.Registration {
     companion object {
     }
 
@@ -31,9 +31,9 @@ class RegistrationFragment : Fragment() {
         binding.btEnter.setOnClickListener { navigateTo(LoginFragment()) }
     }
 
-    private fun registration() {
+    override fun registration() {
         if (checkingLogin() && checkingPasswords()) {
-            register()
+            savingCredentials()
             navigateTo(FirstFragment())
         }
     }
@@ -56,7 +56,7 @@ class RegistrationFragment : Fragment() {
         }
     }
 
-    private fun register() {
+    override fun savingCredentials() {
         TODO("Not yet implemented")
         /*        val usernameEditText = binding.etLogin
             val passwordEditText = binding.etPassword
