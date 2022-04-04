@@ -18,6 +18,7 @@ class LoginPresenter : LoginContract.Presenter {
             view.setSuccess()
         } else {
             view.setError(errorText)
+            view.hideProgress()
         }
     }
 

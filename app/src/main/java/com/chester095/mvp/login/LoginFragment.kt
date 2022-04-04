@@ -1,15 +1,21 @@
 package com.chester095.mvp.login
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import coil.load
 import com.chester095.mvp.R
 import com.chester095.mvp.databinding.FragmentLoginBinding
+import kotlin.concurrent.thread
 
 class LoginFragment : Fragment() , LoginContract.View {
     companion object {
@@ -70,22 +76,27 @@ class LoginFragment : Fragment() , LoginContract.View {
     }
 
     override fun setError(error: String) {
-//        Toast.makeText(this, "ERROR $error", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), "ERROR $error", Toast.LENGTH_SHORT).show()
+        hideKeyboard()
     }
 
     override fun showProgress() {
-        binding.btLogin.isVisible = false
-        binding.etLogin.isVisible = false
-        binding.etPassword.isVisible = false
+        binding.ivFragmentLogin.isVisible = true
+        binding.ivFragmentLogin.scaleType = ImageView.ScaleType.CENTER_INSIDE
+        binding.ivFragmentLogin.load(R.drawable.progress_animation)
+    }
+
+    private fun Fragment.hideKeyboard() {
+        view?.let { activity?.hideKeyboard(it) }
+    }
+
+    private fun Context.hideKeyboard(view: View) {
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     override fun hideProgress() {
-        TODO("Not yet implemented")
-    }
-
-    fun View.hideSoftInput() {
-        val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
+        binding.ivFragmentLogin.isVisible = false
     }
 
 }
