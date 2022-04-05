@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">MVP</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome!"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="et_login">Логин</string>
+    <string name="et_password">Пароль</string>
+    <string name="tv_no_account">Нет аккаунта?</string>
+    <string name="bt_registration">Зарегистрироваться</string>
+    <string name="tv_authorization">Авторизация</string>
+    <string name="tv_registration">Регистрация</string>
+    <string name="bt_enter">Вход</string>
+    <string name="et_enter_login">Введите логин</string>
+    <string name="et_enter_password">Введите пароль</string>
+    <string name="et_enter_password_confirm">Подтвердите пароль</string>
+    <string name="tv_have_account">Есть аккаунт</string>
+    <string name="tv_not_remember_password">Забыли пароль?</string>
+    <string name="bt_password_recovery">Восстановить</string>
 </resources>
