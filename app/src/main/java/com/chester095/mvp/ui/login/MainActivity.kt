@@ -1,9 +1,8 @@
-package com.chester095.mvp.view
+package com.chester095.mvp.ui.login
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.chester095.mvp.R
-import com.chester095.mvp.login.LoginFragment
 
 class MainActivity : AppCompatActivity() {
 

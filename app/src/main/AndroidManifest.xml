@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/MyThemeSplash">
         <activity
-            android:name=".view.MainActivity"
+            android:name="com.chester095.mvp.ui.login.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

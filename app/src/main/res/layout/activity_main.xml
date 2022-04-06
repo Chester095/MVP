@@ -5,6 +5,6 @@
     android:layout_height="match_parent"
     android:id="@+id/container"
     android:theme="@style/MyBaseTheme"
-    tools:context=".view.MainActivity">
+    tools:context=".ui.login.MainActivity">
 
 </FrameLayout>
