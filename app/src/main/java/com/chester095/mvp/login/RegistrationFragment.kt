@@ -27,8 +27,8 @@ class RegistrationFragment : Fragment() , LoginContract.Registration {
     }
 
     private fun initSetOnClickListener() {
-        binding.btRegistration.setOnClickListener { registration() }
-        binding.btEnter.setOnClickListener { navigateTo(LoginFragment()) }
+        binding.registrationButton.setOnClickListener { registration() }
+        binding.haveAccountButton.setOnClickListener { navigateTo(LoginFragment()) }
     }
 
     override fun registration() {
@@ -39,7 +39,7 @@ class RegistrationFragment : Fragment() , LoginContract.Registration {
     }
 
     private fun checkingLogin(): Boolean {
-        return if (binding.etPassword == binding.etPasswordConfirm) {
+        return if (binding.passwordEditText == binding.passwordConfirmEditText) {
             true
         } else {
             Toast.makeText(requireContext(), "Такой логин уже существует", Toast.LENGTH_SHORT).show()
@@ -48,7 +48,7 @@ class RegistrationFragment : Fragment() , LoginContract.Registration {
     }
 
     private fun checkingPasswords(): Boolean {
-        return if (binding.etPassword == binding.etPasswordConfirm) {
+        return if (binding.passwordEditText == binding.passwordConfirmEditText) {
             true
         } else {
             Toast.makeText(requireContext(), "Пароли должны совпадать", Toast.LENGTH_SHORT).show()

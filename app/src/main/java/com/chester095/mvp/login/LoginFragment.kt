@@ -35,16 +35,16 @@ class LoginFragment : Fragment() , LoginContract.View {
     }
 
     private fun initSetOnClickListener() {
-        binding.btLogin.setOnClickListener {usePresenter()}
-        binding.btSignup.setOnClickListener { navigateTo(RegistrationFragment()) }
+        binding.loginButton.setOnClickListener {usePresenter()}
+        binding.signupButton.setOnClickListener { navigateTo(RegistrationFragment()) }
     }
 
     private fun usePresenter() {
         presenter = restorePresenter()
         presenter?.onAttach(this)
         presenter?.onLogin(
-            binding.etLogin.text.toString(),
-            binding.etPassword.text.toString()
+            binding.loginEditText.text.toString(),
+            binding.passwordEditText.text.toString()
         )
     }
 
@@ -78,9 +78,9 @@ class LoginFragment : Fragment() , LoginContract.View {
     }
 
     override fun showProgress() {
-        binding.ivFragmentLogin.isVisible = true
-        binding.ivFragmentLogin.scaleType = ImageView.ScaleType.CENTER_INSIDE
-        binding.ivFragmentLogin.load(R.drawable.progress_animation)
+        binding.loginFragmentImageView.isVisible = true
+        binding.loginFragmentImageView.scaleType = ImageView.ScaleType.CENTER_INSIDE
+        binding.loginFragmentImageView.load(R.drawable.progress_animation)
     }
 
     private fun Fragment.hideKeyboard() {
@@ -93,8 +93,8 @@ class LoginFragment : Fragment() , LoginContract.View {
     }
 
     override fun hideProgress() {
-        binding.layoutNotRememberPassword.isVisible = true
-        binding.ivFragmentLogin.isVisible = false
+        binding.notRememberPasswordLayout.isVisible = true
+        binding.loginFragmentImageView.isVisible = false
     }
 
 }
