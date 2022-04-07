@@ -6,6 +6,6 @@ interface LoginUsecase {
     fun login(
         login: String,
         password: String,
-        @MainThread callback: (Boolean) -> Unit
+        @MainThread callback: (Int) -> Unit
     )
 }

@@ -12,7 +12,7 @@ class LoginUsecaseImpl(
     override fun login(
         login: String,
         password: String,
-        @MainThread callback: (Boolean) -> Unit
+        @MainThread callback: (Int) -> Unit
     ) {
         Thread {
             val result = api.login(login, password)

@@ -20,9 +20,4 @@ class LoginContract {
         fun onLogin(login: String, password: String)
     }
 
-    interface Registration{
-        fun registration()
-        fun savingCredentials()
-
-    }
 }

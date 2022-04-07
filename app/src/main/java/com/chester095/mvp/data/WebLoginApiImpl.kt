@@ -7,8 +7,12 @@ class WebLoginApiImpl : LoginApi {
         // todo
     }
 
-    override fun login(login: String, password: String): Boolean {
+    override fun login(login: String, password: String): Int {
         // todo make request
+        TODO("Not yet implemented")
+    }
+
+    override fun changePassword(login: String, password: String): Boolean {
         TODO("Not yet implemented")
     }
 

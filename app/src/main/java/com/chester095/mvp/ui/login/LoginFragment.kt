@@ -49,7 +49,8 @@ class LoginFragment : Fragment() , LoginContract.View {
     }
 
     private fun restorePresenter(): LoginPresenter {
-        return LoginPresenter()
+        val presenter = setRetainInstance(true) as? LoginPresenter
+        return presenter ?: LoginPresenter(app.loginUsecase)
     }
 
     private fun navigateTo(fragment: Fragment) {

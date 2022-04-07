@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import com.chester095.mvp.R
 import com.chester095.mvp.databinding.FragmentRegistrationBinding
 
-class RegistrationFragment : Fragment() , LoginContract.Registration {
+class RegistrationFragment : Fragment(){
     companion object {
     }
 
@@ -31,7 +31,7 @@ class RegistrationFragment : Fragment() , LoginContract.Registration {
         binding.haveAccountButton.setOnClickListener { navigateTo(LoginFragment()) }
     }
 
-    override fun registration() {
+     private fun registration() {
         if (checkingLogin() && checkingPasswords()) {
             savingCredentials()
             navigateTo(FirstFragment())
@@ -56,7 +56,7 @@ class RegistrationFragment : Fragment() , LoginContract.Registration {
         }
     }
 
-    override fun savingCredentials() {
+    private fun savingCredentials() {
         TODO("Наверное тут надо использовать RegistrationPresenter. Жду команды проверяющего.")
     }
 
