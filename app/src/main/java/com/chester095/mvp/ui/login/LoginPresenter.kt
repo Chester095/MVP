@@ -6,7 +6,6 @@ import com.chester095.mvp.domain.LoginUsecase
 class LoginPresenter(
     private val loginUsecase: LoginUsecase
 ) : LoginContract.Presenter {
-
     private var mockLoginApiImpl: MockLoginApiImpl? = MockLoginApiImpl()
     private var view: LoginContract.View? = null
     private var isSuccess: Boolean = false

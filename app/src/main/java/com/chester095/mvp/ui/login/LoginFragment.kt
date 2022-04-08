@@ -3,6 +3,7 @@ package com.chester095.mvp.ui.login
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,42 +16,33 @@ import coil.load
 import com.chester095.mvp.R
 import com.chester095.mvp.databinding.FragmentLoginBinding
 
-class LoginFragment : Fragment() , LoginContract.View {
+class LoginFragment : Fragment() {
     companion object {
-        fun newInstance(): LoginFragment = LoginFragment()
+        fun newInstance(presenter: LoginContract.Presenter?): LoginFragment = LoginFragment()
     }
 
-    private var presenter: LoginContract.Presenter? = null
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val bundle = this.arguments
+        Log.d("!!!", "onViewCreated  bundle= "+ bundle)
+        val myValue = bundle!!.getBundle("LoginFragment")
+        Log.d("!!!", "onViewCreated  Presenter= "+ MainActivity().presenter)
+        Log.d("!!!", "onViewCreated  myValue= "+ myValue)
         initSetOnClickListener()
     }
 
     private fun initSetOnClickListener() {
-        binding.loginButton.setOnClickListener {usePresenter()}
+        binding.loginButton.setOnClickListener { MainActivity().usePresenter() }
         binding.signupButton.setOnClickListener { navigateTo(RegistrationFragment()) }
-    }
-
-    private fun usePresenter() {
-        presenter = restorePresenter()
-        presenter?.onAttach(this)
-        presenter?.onLogin(
-            binding.loginEditText.text.toString(),
-            binding.passwordEditText.text.toString()
-        )
-    }
-
-    private fun restorePresenter(): LoginPresenter {
-        val presenter = setRetainInstance(true) as? LoginPresenter
-        return presenter ?: LoginPresenter(app.loginUsecase)
     }
 
     private fun navigateTo(fragment: Fragment) {
@@ -69,16 +61,20 @@ class LoginFragment : Fragment() , LoginContract.View {
         _binding = null
     }
 
-    override fun setSuccess() {
-        navigateTo(FirstFragment())
+    fun login(): String {
+       return binding.loginEditText.text.toString()
     }
 
-    override fun setError(error: String) {
+    fun password(): String {
+        return binding.passwordEditText.text.toString()
+    }
+
+    fun setError(error: String) {
         Toast.makeText(requireContext(), "ERROR $error", Toast.LENGTH_SHORT).show()
         hideKeyboard()
     }
 
-    override fun showProgress() {
+    fun showProgress() {
         binding.loginFragmentImageView.isVisible = true
         binding.loginFragmentImageView.scaleType = ImageView.ScaleType.CENTER_INSIDE
         binding.loginFragmentImageView.load(R.drawable.progress_animation)
@@ -93,7 +89,7 @@ class LoginFragment : Fragment() , LoginContract.View {
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
-    override fun hideProgress() {
+    fun hideProgress() {
         binding.notRememberPasswordLayout.isVisible = true
         binding.loginFragmentImageView.isVisible = false
     }
