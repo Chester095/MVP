@@ -5,8 +5,8 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/MyBaseTheme"
-    tools:context=".ui.login.LoginActivity">
+    tools:context=".ui.login.LoginActivity"
+    style="@style/MyThemeOrange">
 
     <TextView
         android:id="@+id/authorization_heading_text_view"
@@ -48,7 +48,8 @@
                     android:autofillHints="username"
                     android:gravity="start"
                     android:hint="@string/login_edit_text"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    tools:ignore="SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout

@@ -3,7 +3,12 @@ package com.chester095.mvp.data
 import com.chester095.mvp.domain.LoginApi
 
 class MockLoginApiImpl : LoginApi {
-    private val dataMockLogin: MutableMap<String, String> = mutableMapOf()
+    private val dataMockLogin: MutableMap<String, String> =
+        mutableMapOf(
+            "Mark" to "dfgsdfgs",
+            "Jone" to "123",
+            "Kingsmarauli" to "qwe"
+        )
 
     override fun login(login: String, password: String): Int {
         if (checkLogin(login)) {

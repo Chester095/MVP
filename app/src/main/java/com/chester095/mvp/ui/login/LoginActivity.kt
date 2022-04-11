@@ -54,7 +54,9 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
     }
 
     private fun initPasswordRecoveryButtonSetOnClickListener() {
-        TODO("запуск активити восстановления пароля")
+        binding.passwordRecoveryButton.setOnClickListener {
+            TODO("запуск активити восстановления пароля")
+        }
     }
 
     private fun restorePresenter(): LoginPresenter {
