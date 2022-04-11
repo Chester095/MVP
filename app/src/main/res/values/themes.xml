@@ -3,6 +3,7 @@
 
     <style name="MyThemeOrange" parent="MyBaseTheme">
         <item name="nasaBackgroundColor">@color/yellow_900</item>
+        <item name="backgroundColor">@color/yellow_100</item>
         <item name="nasaPrimaryColor">@color/yellow_50</item>
         <item name="nasaPrimaryDarkColor">@color/black</item>
         <item name="swipeIndicatorActive">@color/red</item>

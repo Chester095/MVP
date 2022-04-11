@@ -1,4 +1,4 @@
-package com.chester095.mvp.login
+package com.chester095.mvp.ui.login
 
 import androidx.annotation.MainThread
 
@@ -20,9 +20,4 @@ class LoginContract {
         fun onLogin(login: String, password: String)
     }
 
-    interface Registration{
-        fun registration()
-        fun savingCredentials()
-
-    }
 }
