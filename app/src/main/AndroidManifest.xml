@@ -11,7 +11,7 @@
         android:name=".App"
         android:theme="@style/MyThemeSplash">
         <activity
-            android:name="com.chester095.mvp.ui.login.MainActivity"
+            android:name="com.chester095.mvp.ui.login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,6 +19,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.login.FirstActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.login.RegistrationActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

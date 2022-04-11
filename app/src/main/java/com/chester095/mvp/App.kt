@@ -14,7 +14,6 @@ class App : Application() {
     val loginUsecase: LoginUsecase by lazy {
         LoginUsecaseImpl(app.loginApi, Handler(Looper.getMainLooper()))
     }
-
 }
 
 val Context.app: App
