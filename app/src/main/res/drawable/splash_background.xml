@@ -6,8 +6,7 @@
 
     <item>
         <bitmap
-
             android:gravity="center"
-            android:src="@drawable/splash_mvp" />
+            android:src="@drawable/splash_mvvm" />
     </item>
 </layer-list>
