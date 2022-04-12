@@ -3,11 +3,12 @@ package com.chester095.mvp.ui.login
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.annotation.MainThread
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import coil.load
@@ -15,10 +16,10 @@ import com.chester095.mvp.R
 import com.chester095.mvp.app
 import com.chester095.mvp.databinding.ActivityLoginBinding
 
-class LoginActivity : AppCompatActivity(), LoginContract.View {
+class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
-    var presenter: LoginContract.Presenter? = null
-
+    private var viewModel: LoginContract.ViewModel? = null
+    private val handler: Handler by lazy { Handler(Looper.getMainLooper()) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,10 +27,45 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        presenter = restorePresenter()
-        presenter?.onAttach(this)
+        viewModel = restoreViewModel()
 
         initSetOnClickListener()
+        initViewModelSubscribe()
+    }
+
+    private fun initViewModelSubscribe() {
+        initShouldShowProgress()
+        initIsSuccess()
+        initErrorText()
+    }
+
+    private fun initShouldShowProgress() {
+        viewModel?.shouldShowProgress?.subscribe(handler) { shouldShow ->
+            if (shouldShow == true) {
+                showProgress()
+            } else {
+                hideProgress()
+            }
+        }
+    }
+
+    private fun initIsSuccess() {
+        viewModel?.isSuccess?.subscribe(handler) {
+            if (it == true) {
+                setSuccess()
+            }
+        }
+    }
+
+    private fun initErrorText() {
+        viewModel?.errorText?.subscribe(handler) {
+            it?.let {
+                val success = viewModel?.isSuccess?.value
+                if (success == false) {
+                    setError(it)
+                }
+            }
+        }
     }
 
     private fun initSetOnClickListener() {
@@ -40,7 +76,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
 
     private fun initLoginButtonSetOnClickListener() {
         binding.loginButton.setOnClickListener {
-            presenter?.onLogin(
+            viewModel?.onLogin(
                 binding.loginEditText.text.toString(),
                 binding.passwordEditText.text.toString()
             )
@@ -59,35 +95,38 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
         }
     }
 
-    private fun restorePresenter(): LoginPresenter {
-        val presenter = lastCustomNonConfigurationInstance as? LoginPresenter
-        return presenter ?: LoginPresenter(app.loginUsecase)
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel?.isSuccess?.unsubscribeAll()
+        viewModel?.errorText?.unsubscribeAll()
+        viewModel?.shouldShowProgress?.unsubscribeAll()
+    }
+
+    private fun restoreViewModel(): LoginViewModel {
+        val viewModel = lastCustomNonConfigurationInstance as? LoginViewModel
+        return viewModel ?: LoginViewModel(app.loginUsecase)
     }
 
     override fun onRetainCustomNonConfigurationInstance(): Any? {
-        return presenter
+        return viewModel
     }
 
-    @MainThread
-    override fun setSuccess() {
+    private fun setSuccess() {
         startActivity(Intent(this, FirstActivity::class.java))
     }
 
-    @MainThread
-    override fun setError(error: String) {
+    private fun setError(error: String) {
         Toast.makeText(this, "ERROR $error", Toast.LENGTH_SHORT).show()
         hideKeyboard(this)
     }
 
-    @MainThread
-    override fun showProgress() {
+    private fun showProgress() {
         binding.loginActivityImageView.isVisible = true
         binding.loginActivityImageView.scaleType = ImageView.ScaleType.CENTER_INSIDE
         binding.loginActivityImageView.load(R.drawable.progress_animation)
     }
 
-    @MainThread
-    override fun hideProgress() {
+    private fun hideProgress() {
         binding.notRememberPasswordLayout.isVisible = true
         binding.loginActivityImageView.isVisible = false
     }

@@ -1,23 +1,20 @@
 package com.chester095.mvp.ui.login
 
 import androidx.annotation.MainThread
+import com.chester095.mvp.utils.Publisher
 
 class LoginContract {
 
-    interface View {
-        @MainThread
-        fun setSuccess()
-        @MainThread
-        fun setError(error: String)
-        @MainThread
-        fun showProgress()
-        @MainThread
-        fun hideProgress()
-    }
+    interface ViewModel {
+        val shouldShowProgress: Publisher<Boolean>
+        val isSuccess: Publisher<Boolean>
+        val errorText: Publisher<String?>
 
-    interface Presenter {
-        fun onAttach(view: View)
+        @MainThread
         fun onLogin(login: String, password: String)
+
+        @MainThread
+        fun onCredentialsChanged()
     }
 
 }
